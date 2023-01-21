@@ -58,7 +58,7 @@ if ($totalItems -gt 0) {
 foreach ($item in $items) {
     echo " "
     $subfolder = $item.Name
-    $launchcmd = ("R:\MoveFromPhone.ps1")
+    $launchcmd = ("MoveFromPhone.ps1")
     $launchargs = (-join( `
                     " -phoneName '",$phoneName,`
                     "' -sourceFolder '\",$phoneFolderPath,"\",$subfolder, `
