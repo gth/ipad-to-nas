@@ -1,9 +1,10 @@
 # Windows Powershell Script to move a set of files (based on a filter) from a folder
-# on a MTP device (e.g. Android phone) to a folder on a computer, using the Windows Shell.
+# on an MTP device (e.g. Android phone) to a folder on a computer, using the Windows Shell.
 # By Daiyan Yingyu, 19 March 2018, based on the (non-working) script found here:
 #   https://www.pstips.net/access-file-system-against-mtp-connection.html
 # as referenced here:
 #   https://powershell.org/forums/topic/powershell-mtp-connections/
+#
 #
 # This Powershell script is provided 'as-is', without any express or implied warranty.
 # In no event will the author be held liable for any damages arising from the use of this script.
@@ -12,7 +13,7 @@
 # the files will be DELETED from the source (the phone) and MOVED to the computer.
 #
 # If you want to copy files instead, you can replace the MoveHere function call with "CopyHere" instead.
-# But once again, I can take any responsibility for the use, or misuse, of this script.</em>
+# But once again, I can take any responsibility for the use, or misuse, of this script.
 #
 #
 param([string]$phoneName,[string]$sourceFolder,[string]$targetFolder,[string]$filter='(.jpg)|(.mp4)$')
@@ -55,7 +56,7 @@ function Get-SubFolder
 
 $phoneFolderPath = $sourceFolder
 $destinationFolderPath = $targetFolder
-echo "Moving  $phoneFolderPath to  $destinationFolderPath matching  $filter"
+echo "Moving $phoneFolderPath to $destinationFolderPath matching $filter"
 
 # Optionally add additional sub-folders to the destination path, such as one based on date
 
@@ -66,7 +67,7 @@ $folder = Get-SubFolder -parent $phone -path $phoneFolderPath
 $items = @( $folder.GetFolder.items() | where { $_.Name -match $filter } )
 if ($items) {
 	$totalItems = $items.count
-    echo "Found $totalItems items."
+	echo "Found $totalItems items."
 	if ($totalItems -gt 0)
 	{
 		# If destination path doesn't exist, create it only if we have some items to move
@@ -100,6 +101,7 @@ if ($items) {
 			}
 			else
 			{
+				# The next line is what you'd need to change to make the script to a COPY instead of a MOVE.
 				$destinationFolder.GetFolder.MoveHere($item)
 				if (test-path -path $targetFilePath)
 				{
