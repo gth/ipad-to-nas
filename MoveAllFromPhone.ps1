@@ -1,5 +1,5 @@
-# This file just uses the first part of Daiyan's script (see the other file in this repository),
-# to find the folder names, which it iterates through, calling the second script.
+# This file just uses the first part of Daiyan's script (see the MoveFromPhone.ps1 script in this repository),
+# to build a list of the folder names, which it then iterates through, calling the main move script on each folder.
 #
 param([string]$phoneName,[string]$sourceFolder,[string]$targetFolder,[string]$filter='(.jpg)|(.mp4)$')
 
